@@ -2,14 +2,14 @@
 ___
 ## :one:Устанавливаем React и TypeScript
 
-*`npm create vite@latest my-react-app --template react`
-*`cd my-react-app`
-*`npm install`
-*`npm run dev`
+* `npm create vite@latest my-react-app --template react`
+* `cd my-react-app`
+* `npm install`
+* `npm run dev`
 ___
 ## :two:Устанавливаем Eslint, Redux
-*`npm init @eslint/config`
-*`npm install -D eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb redux react-redux react-router-dom`
+* `npm init @eslint/config`
+* `npm install -D eslint-plugin-react eslint-plugin-react-hooks eslint-config-airbnb redux react-redux react-router-dom`
 ___
 ## :three:Настройка файла .eslintrc.json
 ```
@@ -52,8 +52,8 @@ ___
 ```
 ___
 ## :four:Устанавливаем Prettier
-*`npm install -D --save-exact prettier eslint-config-prettier`
-*`echo {}> .prettierrc.json`
+* `npm install -D --save-exact prettier eslint-config-prettier`
+* `echo {}> .prettierrc.json`
 ___
 ## :five:Настройка файла .prettierrc.json
 ```
