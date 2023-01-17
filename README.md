@@ -64,4 +64,4 @@ ___
   "singleQuote": true
 }
 ```
-### :white_check_mark: Проект готов к работе
+### :white_check_mark: Проект готов к работе `npm run dev`
