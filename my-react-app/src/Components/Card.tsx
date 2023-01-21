@@ -2,6 +2,7 @@
 import './Card.css';
 
 export function Card({ film }) {
+    // {`https://image.tmdb.org/t/p/w500/${film.poster}`}
     return (
         <div className="card">
             <img src="../../src/assets/img/300x450.webp" alt="" />
@@ -42,6 +43,7 @@ export function Card({ film }) {
                 </div>
 
                 <div className="name">{film.title}</div>
+
                 <a className="link">Подробнее</a>
             </div>
         </div>
