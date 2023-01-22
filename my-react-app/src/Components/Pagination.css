@@ -9,3 +9,9 @@
     margin-top: 1rem;
   
 }
+.pagination{
+  width: 100%;
+}
+.paginate__btn{
+  margin: 0 1rem;
+}

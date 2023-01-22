@@ -1,5 +1,6 @@
 .list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+   grid-template-columns: repeat(3,1fr);
     gap: 1rem;
+    width: calc(100% - 400px);
 }

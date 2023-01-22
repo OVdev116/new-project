@@ -3,7 +3,8 @@ import Context from './../assets/js/Context';
 import Pagination from './Pagination';
 import { genre } from '../genre';
 import './Filter.css';
-
+let checkedArr = [];
+let checkedGenreList=[];
 function Filter() {
     const listFilms = useContext(Context);
 
@@ -53,7 +54,7 @@ function Filter() {
     };
 
     const sortingYear = (option) => {
-        const sortArr = [...listFilms.films];
+        const sortArr = [...listFilms.setList];
         let newArr = [];
         sortArr.filter((item) => {
             if (new Date(item.release_date).getFullYear() === +option) {
@@ -64,25 +65,27 @@ function Filter() {
     };
     const checkedGenre = (value) => {
         const sortArr = [...listFilms.films];
-        let newArr = [];
+        let newArr = []; 
         sortArr.filter((item) => {
-            item.genre_ids.forEach((element) => {
-                if (element === +value && item) {
+           item.genre_ids.forEach((element) => {     
+                if ( value.includes(element) ) {
                     newArr.push(item);
                 }
             });
         });
         listFilms.useSetList(newArr);
     };
-
+    const checked=(e)=>{
+    checkedArr.push({target:e.target,checked:e.target.checked});    
+    };
     return (
         <div className="filter">
             <div className="title">Фильтр</div>
-            <select
+            <div className="select__container">
+               <select
                 name=""
                 id=""
-                onChange={(e) => {
-                    console.log(e.target.value);
+                onChange={(e) => { 
                     sorting(e.target.value);
                 }}
             >
@@ -111,7 +114,9 @@ function Filter() {
                         </option>
                     );
                 })}
-            </select>
+            </select>   
+            </div>
+          
             {genre.map((item) => (
                 <div className="form__input" key={item.id}>
                     <input
@@ -119,14 +124,24 @@ function Filter() {
                         id={String(item.id)}
                         value={item.id}
                         onChange={(e) => {
-                            checkedGenre(e.target.value);
+                            checkedGenreList.push(+e.target.value)
+                            checkedGenre(checkedGenreList);
+                            checked(e)
+                            
                         }}
                     />
                     <label htmlFor={String(item.id)} /> {item.name}
                 </div>
             ))}
-            {/* <button onClick={() => {}}>Сбросить фильтры</button> */}
-            <Pagination />
+            <button className='clear' onClick={() => {
+              checkedArr.forEach(item=>{item.target.checked=false;
+                listFilms.useSetList(listFilms.films)
+                 }
+              )
+              
+                
+            }}>Сбросить фильтры</button>
+        
         </div>
     );
 }

@@ -5,15 +5,24 @@ import Header from './Header';
 import List from './List';
 import { films } from './../films';
 import Context from './../assets/js/Context';
+import Pagination from './Pagination';
 function App() {
-    let newList = [...films].slice(0, 10);
-    const [setList, useSetList] = useState(newList);
+    const [setList, useSetList] = useState(films);
     const value = {
         films: films,
         useSetList,
         setList,
     };
+    const [currentPage, setCurrentPage]=useState(1);
+    const [PerPage]=useState(10);
 
+    const lastIndex=currentPage * PerPage;
+    const firstIndex= lastIndex -PerPage;
+    const current=value.setList.slice(firstIndex,lastIndex)
+    value.current=current;
+    const paginate=(pageNumber)=>{
+        setCurrentPage(pageNumber)
+    }
     return (
         <Context.Provider value={value}>
             <div className="App">
@@ -21,6 +30,8 @@ function App() {
                 <div className="content">
                     <Filter />
                     <List />
+                    <Pagination PerPage={PerPage} paginate={paginate}/>
+                   
                 </div>
             </div>
         </Context.Provider>

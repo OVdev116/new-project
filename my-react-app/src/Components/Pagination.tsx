@@ -1,57 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './Pagination.css';
 import Context from './../assets/js/Context';
-let numberCards = 10;
-let indexStart = 0;
-let step = 10;
-let activePage = 1;
-function Pagination() {
-    const listFilms = useContext(Context);
-    const allPages = parseInt(listFilms.films.length / 10);
 
-    const nextPage = () => {
-        if (numberCards <= listFilms.films.length) {
-            let start = (indexStart += step);
-            let number = (numberCards += step);
-            let newList = [...listFilms.films].slice(start, number);
-            listFilms.useSetList(newList);
-            activePage += 1;
-        }
-    };
-    const prevPage = () => {
-        if (activePage > 1) {
-            let start = (indexStart -= step);
-            let number = (numberCards -= step);
-            let newList = [...listFilms.films].slice(start, number);
-            listFilms.useSetList(newList);
-            activePage -= 1;
-        } else {
-            return;
-        }
-    };
-    return (
-        <>
-            <div className="pagination__btns">
-                <button
-                    onClick={() => {
-                        prevPage();
-                    }}
-                >
-                    Назад
-                </button>
-                <button
-                    onClick={() => {
-                        nextPage();
-                    }}
-                >
-                    Вперед
-                </button>
-            </div>
-            <div className="pagination__pages">
-                <span className="active__page">{activePage}</span>of{' '}
-                <div className="all__pages">{allPages}</div>
-            </div>
-        </>
-    );
+
+function Pagination({ PerPage,paginate}){
+    const listFilms = useContext(Context);
+    let total=listFilms.setList.length;
+   console.log(listFilms.current); 
+    let pageNumbers=[];
+    for(let i=1;i<Math.ceil((total/PerPage)); i++){     
+     pageNumbers.push(i);            
+    }
+   
+return (
+    <div className="pagination">
+        {pageNumbers.map(number=>{ 
+            return <a href='#' className='paginate__btn' onClick={()=>{
+                paginate(number)
+            }}>{number}</a>
+        })}
+
+    </div>
+)
 }
+
 export default Pagination;
