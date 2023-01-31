@@ -1,16 +1,34 @@
 ﻿import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import './Card.css';
+// import Page from './page';
 
-export function Card({ film }) {
+const nameStorage = 'favorites';
+const watchLater = 'watchLater';
+// const arrayCardsId = JSON.parse(localStorage.getItem(nameStorage)) || [];
+// const arraywatchLater = JSON.parse(localStorage.getItem(watchLater)) || [];
+export function Card({ film, cardInfo }) {
     // {`https://image.tmdb.org/t/p/w500/${film.poster}`}
+    const dispatch = useDispatch();
     return (
         <div className="card">
-            <div className="">  <img src="../../src/assets/img/300x450.webp" alt="" /></div>
+            <div className="">
+                <img src="../../src/assets/img/300x450.webp" alt="" />
+            </div>
             <div className="card__content">
                 <div className="card__head">
                     Рейтинг
                     <span className="raiting">{film.raiting}</span>
-                    <div className="star">
+                    <div
+                        className="star"
+                        onClick={() => {
+                            dispatch({
+                                type: 'FAVORITES_LIST',
+                                payload: { id: cardInfo },
+                            });
+                        }}
+                    >
                         <svg
                             enableBackground="new 0 0 32 32"
                             height="32px"
@@ -27,7 +45,16 @@ export function Card({ film }) {
                             />
                         </svg>
                     </div>
-                    <div className="bookmark">
+                    <div
+                        className="bookmark"
+                        onClick={() => {
+                            // saveLocalStorage(
+                            //     arraywatchLater,
+                            //     cardInfo,
+                            //     watchLater
+                            // );
+                        }}
+                    >
                         <svg
                             viewBox="0 0 512 512"
                             width="32px"
@@ -43,8 +70,9 @@ export function Card({ film }) {
                 </div>
 
                 <div className="name">{film.title}</div>
+                <Link to={`/card/${cardInfo.id}`}>Подробнее</Link>
 
-                <a className="link">Подробнее</a>
+                {/* <a className="link">Подробнее</a> */}
             </div>
         </div>
     );

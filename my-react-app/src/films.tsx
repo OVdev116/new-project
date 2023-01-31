@@ -1123,23 +1123,7 @@ export const films = [
         vote_average: 6.8,
         vote_count: 434,
     },
-    {
-        adult: false,
-        backdrop_path: '/21Q8bzu10YF9i4O5amBkJBombYo.jpg',
-        genre_ids: [10402, 18, 10749],
-        id: 585244,
-        original_language: 'en',
-        original_title: 'I Still Believe',
-        overview:
-            'Подчас на пути к профессиональному успеху и личному счастью реальная жизнь предлагает преодолеть трагические обстоятельства, оставляя лишь крохи надежды и веру в любовь.',
-        popularity: 72.832,
-        poster_path: '/hDq0YRF4Aq92mJ9oinCBTJq3duU.jpg',
-        release_date: '2020-03-12',
-        title: 'Верю в любовь',
-        video: false,
-        vote_average: 7.6,
-        vote_count: 978,
-    },
+
     {
         adult: false,
         backdrop_path: '/9R2FuGT0BeZl8usfsfqIcO7KK7v.jpg',

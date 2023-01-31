@@ -1,40 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
-import Filter from './Filter';
-import Header from './Header';
-import List from './List';
-import { films } from './../films';
-import Context from './../assets/js/Context';
+// import { useDispatch } from 'react-redux';
+// import { useSelector } from 'react-redux/es/exports';
+import { Route, Routes } from 'react-router-dom';
+// import Filter from './Filter';
+// import Header from './Header';
+// import List from './List';
+// import { films } from '../films';
+// import Context from '../assets/js/Context';
 import Pagination from './Pagination';
-function App() {
-    const [setList, useSetList] = useState(films);
-    const value = {
-        films: films,
-        useSetList,
-        setList,
-    };
-    const [currentPage, setCurrentPage]=useState(1);
-    const [PerPage]=useState(10);
+import Home from '../pages/home';
+import PageCard from './PageCard';
+import Layout from './Layout';
+import { FavoritesList } from '../pages/favorites-list';
+import { Popup } from './Popup';
+import { Search } from '../pages/search';
 
-    const lastIndex=currentPage * PerPage;
-    const firstIndex= lastIndex -PerPage;
-    const current=value.setList.slice(firstIndex,lastIndex)
-    value.current=current;
-    const paginate=(pageNumber)=>{
-        setCurrentPage(pageNumber)
-    }
+function App() {
     return (
-        <Context.Provider value={value}>
-            <div className="App">
-                <Header />
-                <div className="content">
-                    <Filter />
-                    <List />
-                    <Pagination PerPage={PerPage} paginate={paginate}/>
-                   
-                </div>
-            </div>
-        </Context.Provider>
+        <div className="App">
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Home />} />
+                    <Route path="search" element={<Search />} />
+                    <Route path="sign-in" element={<Popup />} />
+                    <Route path="card/:id" element={<PageCard />} />
+                    <Route path="favorites" element={<FavoritesList />} />
+                </Route>
+            </Routes>
+        </div>
     );
 }
 
